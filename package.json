@@ -1,0 +1,53 @@
+{
+  "name": "asuka-linter-buddy",
+  "displayName": "Asuka Linter Buddy",
+  "description": "A companion that reacts to your code's errors and fixes, comic-book style.",
+  "version": "0.0.1",
+  "engines": { "vscode": "^1.85.0" },
+  "categories": ["Other"],
+  "activationEvents": ["onStartupFinished"],
+  "main": "./extension.js",
+  "contributes": {
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "asukaBuddyContainer",
+          "title": "Asuka",
+          "icon": "media/icon.svg"
+        }
+      ]
+    },
+    "views": {
+      "asukaBuddyContainer": [
+        {
+          "type": "webview",
+          "id": "asukaHelper.view",
+          "name": "Linter Buddy"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "Asuka Linter Buddy",
+      "properties": {
+        "asukaBuddy.goodJobDurationMs": {
+          "type": "number",
+          "default": 3000,
+          "description": "How long the 'Good job!' message stays visible before hiding, in milliseconds."
+        },
+        "asukaBuddy.severityThreshold": {
+          "type": "string",
+          "enum": ["Error", "Warning"],
+          "default": "Error",
+          "description": "Minimum diagnostic severity that counts as 'a mistake'."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "package": "vsce package"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.85.0",
+    "@vscode/vsce": "^2.24.0"
+  }
+}
